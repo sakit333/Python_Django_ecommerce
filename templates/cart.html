@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Pykart | Cart{% endblock %}
+{% block body %}
+<div class="row  mt-5 mb-5  bg-white" style="width: 93%;margin-left: 60px;">
+<table class="table">
+    <tbody>
+        {% for item in cartitems %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{item.productitem.product}}</td>
+        <td>
+          {% if item.quantity == 1 %}
+          <span style="font-size: 20px;">- </span>
+          {% else %}
+          <a href="{% url 'decrement' item.id %}" class="text-decoration-none text-black  "   > 
+            <span style="font-size: 20px;font-weight: bolder;">- </span></a>
+          {% endif %}
+          {{item.quantity}}
+          <a href="{% url 'increment' item.id %}" class=" text-decoration-none text-black"> 
+            <span style="font-size: 20px;font-weight:bolder;">+</span> </a>
+        </td>
+        <td>{{item.size}}</td>
+        <td>{{item.productitem.original_price}}</td>
+        <td>{{item.productitem.sale_price}}</td>
+        <td>{{item.get_total_productitem_price}}</td>
+        <td>{{item.get_total_discount_productitem_price}}</td>
+        <td>{{item.get_amount_saved}}</td>
+        <td><a href="{% url 'remove' item.id %}" class=" text-decoration-none text-black">remove</a></td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+ 
+</div>
+<div class="row">
+<div class="mt-5 mb-5" style="margin-left: 1300px;">
+  <button class="btn" style="background-color:#fb641b;box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
+  border:none;color: #fff;">Place Order</button>
+</div>
+</div>
+{% endblock %}
+{% block footer %}
+    {% include 'partials/footer.html' %}
+    {% endblock %}
+<div class=" col-auto mt-5 mb-5  bg-white" style="width: 38%;margin-left: 500px;">
+  
+  
+  </div>

@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Signup</title>
+{% endblock %}
+{% block body %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+<div id="division">
+<div id="imgdiv">
+  <center><img id="img"  src="{% static 'img/signup.png' %}" alt=""></center>
+</div>
+
+    <div id="formdiv" style="margin-top: 50px; margin-bottom: 50px; width: 95vw;">
+    
+      <div  style="width: 400px;">
+        
+        <div id="card" class="card">
+          <div class="card-body">
+            
+            <h5 class="card-title text-center">Signup</h5>
+            
+            <form style="text-align: left;" action="" method="post">
+              {% csrf_token %}
+              {{form | crispy}}
+              <div class="text-center">
+                <input class="btn btn-primary text-center mt-2 w-100" type="submit" value="Signup" style="background-color: #7A1CAC; border: #7A1CAC;">
+            </div>
+          </form>
+          <div class="text-center">
+            <a href="{% url 'signin' %}">Alredy have an account</a><br>
+            
+
+        </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+<style>
+  #division{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 98vw;
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+  #img{
+    width: 600px;
+    margin-left: 0px;
+    height: 600px;
+
+  }
+  #imgdiv{
+    width: 95vw;
+  }
+  #formdiv{
+    display: flex;
+    justify-content: left;
+    margin-left:10px ;
+  }
+  @media (max-width:1000px){
+    #division{
+      display: block;
+      text-align: center;
+      margin: auto;
+    }
+    
+    #formdiv{
+      width: 90vw;
+      display: flex;
+      justify-content: center;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #imgdiv{
+      margin-top: 20px;
+      width:auto;
+    }
+    #img{
+      width: 90vw;
+      display: flex;
+    margin-left: 0px;
+    height: auto;
+
+  }
+  }
+
+  @media (max-width:600px){
+
+    
+    #formdiv{
+      width: 90vw;
+      display: flex;
+      justify-content: center;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #imgdiv{
+      margin-top: 20px;
+    }
+   
+  }
+</style>
+{% endblock %}

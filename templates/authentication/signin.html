@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block title %}
+Signin
+{% endblock %}
+{% block body %}
+{% load crispy_forms_tags %}
+{% load static %}
+<div id="division">
+    <div id="divimage">
+      <img src="{% static 'img/login.png' %}" alt="">
+    </div>
+
+    <div id="formdiv" style="margin-top: 50px; margin-bottom: 50px; width: 100vw;">
+    
+      <div style="width: 400px;">
+        
+        <div id="card" class="card">
+          <div class="card-body">
+            
+            <h5 class="card-title text-center">Signin</h5>
+            
+            <form style="text-align: left;" action="" method="post">
+              {% csrf_token %}
+              {{form | crispy}}
+              <div class="text-center">
+                  <input class="btn btn-primary text-center mt-2 w-100" type="submit" value="Signin" style="background-color: #7A1CAC; border: #7A1CAC;">
+              </div>
+          </form>
+          <div class="text-center">
+              <a href="{% url 'register' %}">Create New Account</a><br>
+              <a href="{% url 'forgotpassword' %}">Forget Password</a>
+  
+          </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+  
+<style>
+  #division{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 98vw;
+    margin: 100px 0px;
+
+  }
+  #divimage{
+    margin-left: 500px;
+    /* margin-right: 10px; */
+  }
+  #divimage img{
+    width: 400px;
+  }
+  @media (max-width: 1300px) {
+    
+    #divimage{
+      margin-left: 50px;
+    }
+  }
+  @media (max-width:850px){
+    #division{
+      display: block;
+      text-align: center;
+      margin: auto;
+    }
+    #divimage{
+      margin-left: 0px;
+      margin-right: 0px;
+      /* width: 90vw; */
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    #divimage img{
+    width: 300px;
+  }
+    #card{
+      padding: 0 10px;
+      /* width: 350px; */
+      /* margin-left: 35px; */
+    }
+    #formdiv{
+      width: 90vw;
+      display: flex;
+      justify-content: center;
+    }
+  }
+</style>
+{% endblock %}
+
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo2.png' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body style="background-color:rgba(221, 219, 219, 0.521);min-height: 100vh;display: flex;flex-direction: column;">
+    <header class="sticky-md-top" >
+        {% include 'partials/header.html' %}
+    </header>
+    
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}" role="alert">
+        {{ message }}
+      </div>   
+    {% endfor %}
+    {% endif %}
+
+
+    <div>
+        {% block body %}
+    {% endblock %}
+    </div>
+    
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<footer class="mt-5" style="margin-top:auto;">
+    {% block footer %}
+    
+    {% endblock %}
+</footer>
+</body>
+</html>

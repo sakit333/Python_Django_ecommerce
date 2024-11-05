@@ -1,0 +1,8 @@
+django
+python-dotenv
+mysqlclient
+django-crispy-forms
+crispy-bootstrap4
+pillow
+stripe
+django_countries

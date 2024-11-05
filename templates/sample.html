@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is template view</h1>
+</body>
+</html>
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        {% if product.image1 %}
+        <div class="carousel-item">
+          <img src="{{product.image1.url}}" class="d-block w-100" alt="...">
+        </div>
+        {% endif %}
+      {% if product.image2 %}
+      <div class="carousel-item">
+        <img src="{{product.image2.url}}" class="d-block w-100" alt="...">
+      </div>
+      {% endif %}
+      {% if product.image3 %}
+      <div class="carousel-item">
+        <img src="{{product.image3.url}}" class="d-block w-100" alt="...">
+      </div>
+      {% endif %}
+      {% if product.image4 %}
+      <div class="carousel-item">
+        <img src="{{product.image4.url}}" class="d-block w-100" alt="...">
+      </div>
+      {% endif %}
+    </div>
+  </div>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Pykart | Reset password{% endblock %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+
+
+
+<div class="position-relative top-100 start-50 mt-5 mb-5  row w-25" style="margin-left:-200px ;" >
+    <div class=" ">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">Reset Password</h5>
+          {% load crispy_forms_tags %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{form|crispy}}
+    <br>
+    <input type="submit" class="btn btn-primary w-100" value="reset" style="background-color:rgb(58, 99, 181);color: white;">
+</form><br> 
+
+         
+        </div>
+      </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% block footer %}
+    {% include 'partials/footer.html' %}
+    {% endblock %}

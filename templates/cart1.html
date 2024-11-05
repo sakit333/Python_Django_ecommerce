@@ -1,0 +1,319 @@
+{% extends 'base.html' %}
+{% block title %}Pykart | Cart{% endblock %}
+{% block header %}
+{% endblock %}
+{% block body %}
+<style>
+
+  
+  .place_order{
+    margin-left:400px;
+    }
+
+    .place_order .place-order-btn {
+      width:150px;
+      background-color:#fb641b;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
+      border:none;
+      color: #fff;
+    }
+    .table.mb-5 {
+         /* Change background color for smaller screens */
+        width: 100%; /* Make table full width */
+    }
+    .image img{
+      width:100px;
+      height:100px;
+    }
+
+
+    .container {
+      padding-top: 350px;
+        display: flex;
+       
+           /* Centers vertically */
+                  /* Full viewport height */
+    }
+
+  .pika {
+        display: none;
+        margin-top: 500px;
+        background-color: white;
+        top: 900px;
+        
+        
+ 
+        border-radius: 10px;
+        padding: 10px;
+        width: 720px;
+        height: 300px;
+        
+    }
+  .pika table{
+    width: 700px;
+    height: 200px;
+  }
+  .col-auto.mt-5.mb-5{
+    width:38%;
+    margin-left: 200px;
+    height: 20px; 
+    background-color: white;
+  }
+
+
+
+  @media only screen and (max-width: 600px) {
+
+ body{
+  width: 900px;
+  height: 100%;
+ }
+
+    .pika {
+    display: block;
+    
+}
+    .image{
+      width: 170px;
+      height: 170px;
+      align-items: center;
+    }
+    .image img{
+      width: 350px;
+      height: 300px;
+    }
+    .place_order{     
+    margin-left:0px;
+    }
+    .place_order .place-order-btn {
+        width: 700px; 
+        margin-left: 0px;
+    }
+    .info{
+      width: 400px;
+      height: 400px;
+      font-size: 20px;
+    }
+    tbody{
+      width: 900px;
+    }
+    .mt-1{
+      width: 100px;
+    }
+
+    .col-auto.bg-white.ms-5.mt-5.mb-5.b{
+    display: none; /* Hides the div completely */
+}
+
+.col-auto.mt-5.mb-5{
+  position: absolute;
+    width:38%;
+    margin-left:0px;
+    height: 20px; 
+    background-color: white;
+  }
+.container{
+  background-color: white;
+  width: 100%;
+}
+.box{
+  margin-left: 0px;
+}
+
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1200px){
+
+  body{
+  width: 1200px;
+  height: 100%;
+ }
+
+    .pika {
+    display: block;
+    width: 650px;
+}
+    .image{
+      width: 170px;
+      height: 170px;
+      align-items: center;
+    }
+    .image img{
+      width: 350px;
+      height: 300px;
+     
+    }
+    .place_order{     
+    margin-left:0px;
+    }
+    .place_order .place-order-btn {
+        width: 700px; 
+        
+    }
+    .info{
+      width: 400px;
+      height: 400px;
+      font-size: 20px;
+      padding-left: 200px;
+    }
+    tbody{
+      width: 900px;
+      
+    }
+    .mt-1{
+      width: 100px;
+    }
+
+    .col-auto.bg-white.ms-5.mt-5.mb-5.b{
+    display: none; /* Hides the div completely */
+}
+
+.col-auto.mt-5.mb-5{
+  position: absolute;
+    width:38%;
+    margin-left:0px;
+    height: 20px; 
+    background-color: white;
+  }
+.container{
+  background-color: white;
+  margin-left: 40px;
+  padding-left: 40px;
+}
+
+.info div{
+  padding-left: 100px
+}
+.mt-1{
+  margin-left: 170px;
+}
+.box{
+  margin-left: 100px;
+}
+.container{
+  margin-left: 100px;
+  max-width: 720px;
+  width: 100%;
+}
+}
+</style>
+<div class="box">
+<div class="row mb-5" >
+<div class="col-auto mt-5 mb-5">
+  <table class="table  mb-5" style="background-color: orange;">
+    <tbody>
+        {% for item in cartitems %}
+      <tr>
+        
+        <td style="background-color: white;" class="image"><img src="{{item.productitem.image1.url}}" style="" alt=""> <br>
+        <div class=" mt-1" style="background-color: white;">
+          {% if item.quantity == 1 %}
+          
+          <button style="font-size: 20px;font-weight: bolder;width: 30px;border-width: 1px;padding: 0px;">- </button>
+          {% else %}
+          <a href="{% url 'decrement' item.id %}" class="text-decoration-none text-black  "   > 
+            <button style="font-size: 20px;font-weight: bolder;width: 30px;border-width: 1px;padding: 0px;">- </button></a>
+          {% endif %}
+          <input type="text" style="width: 30px;height: 33px;padding:0px" class="text-center" " id="" value="{{item.quantity}}">
+          <a href="{% url 'increment' item.id %}" class=" text-decoration-none text-black"> 
+            <button style="font-size: 20px;font-weight:bolder;width: 30px;border-width: 1px;padding: 0px;">+</button> </a>
+        </div>
+        </td>
+
+        <td style="background-color: white;" class="info"><div style="background-color: white;">
+            
+        <span style="color: grey;">{{item.productitem.product.brand}}</span> <br>
+        {{item.productitem.product}} <br>
+        <span style="color: grey;"> size: {{item.size}} </span> <br>
+    
+        <span style="color: grey;"><strike> &#x20b9;{{item.get_total_productitem_price}}</strike></span>
+       <b>&#x20b9; {{item.get_total_discount_productitem_price}}</b> <br>
+        <span style="color:green">amount saved &#x20b9;{{item.get_amount_saved}}</span> <br>
+        <a href="{% url 'remove' item.id %}" class=" text-decoration-none text-black"><b>REMOVE</b></a>
+        </div></td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td colspan="2" style="background-color: white;">
+        <div class="place_order">
+          {% if cartitems %}
+          <a href="{% url 'checkout' %}"> <button class="btn place-order-btn">Place Order</button> <a href=""></a>
+{% endif %}  
+</div>
+    </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="col-auto bg-white ms-5 mt-5 mb-5 b" style="width:20%;height:250px;">
+  <p style="color: grey;"class="mt-2">Price Details</p>
+  <hr style="color: black;">
+  <table width="100%">
+    <tr>
+      <td>Price ( {{totalitems}} items )</td>
+      <td style="margin-left: 200px;"> &#x20b9;{{totalprice}}</td>
+    </tr>
+    <tr>
+      <td>Discount</td>
+      <td><span style="color:green">- &#x20b9;{{totalamtsaved}}</span></td>
+    </tr>
+    <tr>
+      <td colspan="2"><hr></td>
+      
+    </tr>
+    <tr>
+      <td><b>Total Amount </b></td>
+      <td><b> &#x20b9;{{totalsalprice}}</b> </td>
+    </tr>
+    <tr>
+      <td colspan="2"><hr></td>
+      
+    </tr>
+    <tr>
+      <td colspan="2">
+        <span style="color:green">yow will save &#x20b9;{{totalamtsaved}} on this order </span>
+      </td>
+    </tr>
+  </table>
+</div>
+
+</div>
+</div>
+<div class="container">
+<div class="col-auto bg-white ms mt mb-5 pika" >
+  <p style="color: grey;"class="mt-2">Price Details</p>
+  <hr style="color: black;">
+  <table style="width:100%" >
+    <tr>
+      <td>Price ( {{totalitems}} items )</td>
+      <td style="margin-left: 200px;"> &#x20b9;{{totalprice}}</td>
+    </tr>
+    <tr>
+      <td>Discount</td>
+      <td><span style="color:green">- &#x20b9;{{totalamtsaved}}</span></td>
+    </tr>
+    <tr>
+      <td colspan="2"><hr></td>
+      
+    </tr>
+    <tr>
+      <td><b>Total Amount </b></td>
+      <td><b> &#x20b9;{{totalsalprice}}</b> </td>
+    </tr>
+    <tr>
+      <td colspan="2"><hr></td>
+      
+    </tr>
+    <tr>
+      <td colspan="2">
+        <span style="color:green">yow will save &#x20b9;{{totalamtsaved}} on this order </span>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
